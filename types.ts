@@ -22,7 +22,8 @@ export interface PixelArtResult {
 export const CELO_CHAIN_ID_HEX = '0xa4ec'; // 42220
 export const CELO_CHAIN_ID_DECIMAL = 42220;
 
-export const TARGET_CONTRACT_ADDRESS = "0xa81ef6dfac382c1c912e226575e8ac8caac37169";
+// Updated contract address to the new deployment
+export const TARGET_CONTRACT_ADDRESS = "0x15548f0a85034a0441D313fC8ceABBb0BFbBA06a";
 
 export const CRYPTO_PERSONAS = [
   { name: 'Bitcoin', trait: 'The OG Leader' },

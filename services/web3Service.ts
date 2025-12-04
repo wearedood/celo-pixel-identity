@@ -60,9 +60,8 @@ export const switchToCeloNetwork = async (): Promise<void> => {
 export const sendInteractionTransaction = async (fromAddress: string): Promise<string> => {
   if (!window.ethereum) throw new Error("Wallet not found");
 
-  // We are calling the 'mint()' function on the contract to register the interaction.
+  // We are calling the 'mint()' function on the contract.
   // The function selector for mint() is 0x1249c58b (Keccak-256 of "mint()").
-  // This solves the issue of the contract reverting on empty data transfers.
   const functionSelector = '0x1249c58b'; 
 
   const transactionParameters = {
