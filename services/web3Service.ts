@@ -60,17 +60,16 @@ export const switchToCeloNetwork = async (): Promise<void> => {
 export const sendInteractionTransaction = async (fromAddress: string): Promise<string> => {
   if (!window.ethereum) throw new Error("Wallet not found");
 
-  // Since we don't have the ABI, we perform a simple 0-value transaction 
-  // to the contract address. This registers an interaction on the network.
-  // If the contract has a specific function to call, we would encode it in 'data'.
-  // For now, we assume a fallback or receive function exists, or we just want 
-  // to increment the nonce/interact with the address.
-  
+  // We are calling the 'mint()' function on the contract to register the interaction.
+  // The function selector for mint() is 0x1249c58b (Keccak-256 of "mint()").
+  // This solves the issue of the contract reverting on empty data transfers.
+  const functionSelector = '0x1249c58b'; 
+
   const transactionParameters = {
     to: TARGET_CONTRACT_ADDRESS,
     from: fromAddress,
     value: '0x0', // 0 CELO
-    // data: '0x', // Optional: Add specific function selector if known. 
+    data: functionSelector, 
   };
 
   try {
@@ -80,6 +79,7 @@ export const sendInteractionTransaction = async (fromAddress: string): Promise<s
     });
     return txHash;
   } catch (error: any) {
-    throw new Error(error.message || "Transaction rejected or failed.");
+    console.error("Transaction failed:", error);
+    throw new Error(error.message || "Transaction rejected or failed. Please ensure you have CELO for gas.");
   }
 };
