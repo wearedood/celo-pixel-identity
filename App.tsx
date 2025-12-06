@@ -134,9 +134,14 @@ const App: React.FC = () => {
               <div className="flex items-center gap-2 text-xs font-mono uppercase tracking-widest text-neutral-600">
                 <span>Contract</span>
                 <span className="w-4 h-px bg-black"></span>
-                <span className="bg-white px-2 py-0.5 border border-black rounded-sm">
+                <a 
+                  href={`https://celoscan.io/address/${TARGET_CONTRACT_ADDRESS}`}
+                  target="_blank"
+                  rel="noopener noreferrer" 
+                  className="bg-white px-2 py-0.5 border border-black rounded-sm hover:bg-black hover:text-[#FCFF52] transition-colors cursor-pointer"
+                >
                    {TARGET_CONTRACT_ADDRESS.slice(0, 6)}...{TARGET_CONTRACT_ADDRESS.slice(-4)}
-                </span>
+                </a>
               </div>
             </div>
 
